@@ -1,5 +1,6 @@
 import scrapy
 import json
+from ..items import GetirspiderItem
 
 
 class GetirSpider(scrapy.Spider):
@@ -24,12 +25,12 @@ class GetirSpider(scrapy.Spider):
 
         for products in data["pageProps"]["initialState"]["getirListing"]["products"]["data"]:
             for product in products["products"]:
-                yield {
-                    "main_category": main_category,
-                    "name": product["name"],
-                    "short_name": product["shortName"],
-                    "brand": product["brand"]["name"],
-                    "short_description": product["shortDescription"],
-                    "price": product["price"],
-                    "currency": product["currency"]["codeAlpha"],
-                }
+                item = GetirspiderItem()
+                item["main_category"] = main_category
+                item["name"] = product["name"]
+                item["short_name"] = product["shortName"]
+                item["brand"] = product["brand"]["name"]
+                item["short_description"] = product["shortDescription"]
+                item["price"] = product["price"]
+                item["currency"] = product["currency"]["codeAlpha"]
+                yield item

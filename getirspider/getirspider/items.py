@@ -7,6 +7,10 @@ import scrapy
 
 
 class GetirspiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    main_category = scrapy.Field()
+    name = scrapy.Field()
+    short_name = scrapy.Field()
+    brand = scrapy.Field()
+    short_description = scrapy.Field()
+    price = scrapy.Field()
+    currency = scrapy.Field()
